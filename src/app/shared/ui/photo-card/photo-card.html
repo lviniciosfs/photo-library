@@ -1,0 +1,23 @@
+<button
+  type="button"
+  class="photo-card"
+  matRipple
+  [attr.aria-label]="actionLabel()"
+  [class.photo-card--favorite]="favorite()"
+  (click)="selected.emit(photo())"
+>
+  <img
+    class="photo-card-image"
+    [ngSrc]="photo().url"
+    [width]="photo().width"
+    [height]="photo().height"
+    alt=""
+    [priority]="priority()"
+    decoding="async"
+  />
+  @if (favorite()) {
+    <span class="photo-card-badge" aria-hidden="true">
+      <mat-icon>favorite</mat-icon>
+    </span>
+  }
+</button>

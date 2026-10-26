@@ -1,0 +1,29 @@
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: block;
+}
+
+.header {
+  justify-content: center;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface-container);
+}
+
+.header-nav {
+  display: flex;
+  gap: 16px;
+
+  @media (min-width: 600px) {
+    gap: 48px;
+  }
+}
+
+.header-link {
+  min-width: 128px;
+}
+
+.header-count {
+  margin-left: 4px;
+}

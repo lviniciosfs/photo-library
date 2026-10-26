@@ -1,0 +1,11 @@
+.photos-page-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+  color: var(--mat-sys-error);
+}
+
+.photos-page-sentinel {
+  height: 1px;
+}

@@ -1,0 +1,36 @@
+<section class="detail" aria-label="Photo">
+  <div class="detail-frame" [attr.aria-busy]="loadStatus() === 'loading'">
+    <img
+      class="detail-image"
+      [class.detail-image--hidden]="loadStatus() !== 'loaded'"
+      [ngSrc]="photoUrl()"
+      [width]="photoWidth"
+      [height]="photoHeight"
+      alt="Selected photo"
+      priority
+      (load)="loadStatus.set('loaded')"
+      (error)="loadStatus.set('error')"
+    />
+
+    @switch (loadStatus()) {
+      @case ('loading') {
+        <app-loader class="detail-overlay" label="Loading photo..." />
+      }
+      @case ('error') {
+        <p class="detail-overlay detail-error" role="alert">Could not load this photo.</p>
+      }
+    }
+  </div>
+
+  <div class="detail-actions">
+    @if (isFavorite()) {
+      <button matButton="outlined" type="button" (click)="removeFromFavorites()">
+        <mat-icon>heart_broken</mat-icon>
+        Remove from favorites
+      </button>
+    } @else {
+      <p class="detail-hint">This photo is not in your favorites.</p>
+      <a matButton="outlined" routerLink="/favorites">Back to favorites</a>
+    }
+  </div>
+</section>

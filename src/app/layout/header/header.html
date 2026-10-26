@@ -1,0 +1,28 @@
+@let activeSection = activeSection$ | async;
+<mat-toolbar class="header">
+  <nav class="header-nav" aria-label="Main">
+    <a
+      class="header-link"
+      routerLink="/"
+      [matButton]="activeSection === 'photos' ? 'filled' : 'outlined'"
+      [class.header-link--active]="activeSection === 'photos'"
+      [attr.aria-current]="activeSection === 'photos' ? 'page' : null"
+    >
+      <mat-icon>photo_library</mat-icon>
+      Photos
+    </a>
+    <a
+      class="header-link"
+      routerLink="/favorites"
+      [matButton]="activeSection === 'favorites' ? 'filled' : 'outlined'"
+      [class.header-link--active]="activeSection === 'favorites'"
+      [attr.aria-current]="activeSection === 'favorites' ? 'page' : null"
+    >
+      <mat-icon>favorite</mat-icon>
+      Favorites
+      @if (favoritesCount() > 0) {
+        <span class="header-count">({{ favoritesCount() }})</span>
+      }
+    </a>
+  </nav>
+</mat-toolbar>

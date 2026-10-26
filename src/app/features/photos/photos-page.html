@@ -1,0 +1,30 @@
+<section class="page" aria-labelledby="photos-title">
+  <h1 id="photos-title" class="visually-hidden">Photos</h1>
+
+  @let state = streamState();
+
+  <app-photo-grid
+    [photos]="state.photos"
+    [favoriteIds]="favorites.ids()"
+    actionLabel="Add to favorites"
+    (photoSelected)="addToFavorites($event)"
+  />
+
+  @if (state.loading) {
+    <app-loader />
+  }
+
+  @if (state.error; as error) {
+    <div class="photos-page-error" role="alert">
+      <p>{{ error }}</p>
+      <button matButton="tonal" type="button" (click)="stream.loadMore()">Retry</button>
+    </div>
+  }
+
+  <div
+    class="photos-page-sentinel"
+    appInfiniteScroll
+    [scrollDisabled]="state.loading || !!state.error"
+    (scrolled)="stream.loadMore()"
+  ></div>
+</section>
